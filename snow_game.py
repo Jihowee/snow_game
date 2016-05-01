@@ -53,7 +53,7 @@ for y in range(10):
     stars.append([x, y, v_y, v_x])
 
 count = 1
-life = 3
+life = 2
 transparent = False
 hit_time=0
 level_time= 600

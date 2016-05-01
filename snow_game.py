@@ -26,6 +26,11 @@ def show_time(screen, time):
     text = font.render("{0:.2f}".format(time), 1, green)
     screen.blit(text, (500, 457))
 
+def show_point(screen, point):
+    font = pygame.font.Font(None ,30)
+    text = font.render(str(point),1,green)
+    screen.blit(text,(0,457))
+
 def draw_stick_figure(screen,color, x, y):
     pygame.draw.rect(screen,color,[x,y,10,10])
 x_speed = 0
@@ -58,6 +63,7 @@ transparent = False
 hit_time=0
 level_time= 600
 level = 1
+point=0
 while not done:
     screen.fill(black)
     if count % level_time == 0:
@@ -121,11 +127,13 @@ while not done:
         for star in stars2:
             if star[0] >= x_coord and star[0] < x_coord + 10 and star[1] >= y_coord and star[1] < y_coord+27:
                 stars.remove(star)
+                point+=10
                 x = random.randrange(0,700)
                 y = random.randrange(0,500)
                 v_y = 1
                 v_x = 0
                 stars.append([x, y, v_y, v_x])
+                print(point)
 
         for star in stars:
             draw_star(screen,yellow,star[0],star[1])
@@ -148,6 +156,7 @@ while not done:
             draw_stick_figure(screen,red, x_coord, y_coord)
 
         show_time(screen, count/60.0)
+        show_point(screen,point)
         pygame.display.flip()
 
     clock.tick(60)
